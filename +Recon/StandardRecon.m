@@ -58,7 +58,7 @@ data_imag = reshape(imag(data), [1 size(data)]);
 data_comb = cat(1, data_real, data_imag);
 data_comb = double(data_comb);
 traj = double(traj);
-weights = double(weights);
+% weights = double(weights);
 
 clear data data_real data_imag
 
