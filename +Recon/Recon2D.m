@@ -1,7 +1,7 @@
 function [Image_Out, DCF] = Recon2D(AcqSize,data,traj,DCF,weights,ReconSize,PixelShift)
 %% A Function written to reconstruct Images when K-space data and trajectories are passed to it
 % This code uses Pipe's Group DCF and gridding code. 
-% The code will take 2D or 3D k-space data, and return a single 2D image. 
+% The code will take 3D k-space data, and return a single 2D image. 
 %
 %
 % Inputs:
