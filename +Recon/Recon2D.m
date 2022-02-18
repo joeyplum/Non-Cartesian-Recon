@@ -96,12 +96,12 @@ clear data data_real data_imag
 %% Calculate DCF:
 if (PreWeight)
     disp('Calculating weighted DCF...');
-    DCF = recon.DC.sdc3_MAT(traj,numIter,effMtx,verbose,osf,weights);
+    DCF = Recon.DC.sdc3_MAT(traj,numIter,effMtx,verbose,osf,weights);
     DCF = double(DCF);
     disp('Calculated weighted DCF.');
 elseif (CalculateDCF)
     disp('Calculating DCF...');
-    DCF = recon.DC.sdc3_MAT(traj,numIter,effMtx,verbose,osf);
+    DCF = Recon.DC.sdc3_MAT(traj,numIter,effMtx,verbose,osf);
     DCF = double(DCF);
     disp('Calculated DCF.');
 else
@@ -112,7 +112,7 @@ end
 gdata = zeros(2,effMtx*alpha,effMtx*alpha,effMtx*alpha,size(data_comb,4));
 parfor coil = 1:size(data_comb,4)
     disp(['Gridding channel ', num2str(coil), ' of ', num2str(size(data_comb,4)), '...']);
-    gdata(:,:,:,:,1,coil) = recon.Grid.grid3_MAT(squeeze(data_comb(:,:,:,coil)),traj,DCF,effMtx*alpha,numThread);
+    gdata(:,:,:,:,1,coil) = Recon.Grid.grid3_MAT(squeeze(data_comb(:,:,:,coil)),traj,DCF,effMtx*alpha,numThread);
 end
 gdata = squeeze(gdata(1,:,:,:,:) + 1j*gdata(2,:,:,:,:));
 disp('Completed gridding.')
@@ -136,7 +136,7 @@ disp('Calculating rolloff kernel...');
 delta = [1.0, 0.0];
 k_not = [0.0, 0.0, 0.0];
 DCF_not = 1.0;
-rokern = recon.Grid.grid3_MAT(delta',k_not',DCF_not,effMtx*alpha,numThread);
+rokern = Recon.Grid.grid3_MAT(delta',k_not',DCF_not,effMtx*alpha,numThread);
 disp('Completed calculation of rolloff kernel.');
 
 %% FFT to rolloff image:
