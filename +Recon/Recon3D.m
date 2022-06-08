@@ -58,6 +58,8 @@ if exist('weights','var') == 1 % If weights are passed, then calculate.
         PreWeight = 1;
         % Set PreWeight to calculate.
     end
+else 
+    weights = [];
 end
 
 if exist('ReconSize','var') == 0 % If not passed, do not interpolate image.
